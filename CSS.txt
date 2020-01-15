@@ -1,0 +1,437 @@
+-----------------------------------------------------------------------------------------------------------------
+                    CSS Notes
+-----------------------------------------------------------------------------------------------------------------
+As the Web grew in popularity in the 90s, the intent to apply a specific design to a website grew as well. 
+Web developers relied upon specific HTML tags to enhance webpages:
+
+<basefont> defined a font for a whole HTML document
+<font> defined a typeface, a color, and a size for the text it contains
+<center> horizontally centered all its content
+<big> increased the size of the text
+<strike> rendered text with a strikethrough
+Several HTML attributes could also be used:
+
+bgcolor defined a background color on the element
+text defined the text color
+several margin attributes could be used to add space on any side of the element
+-----------------------------------------------------------------------------------------------------------------
+What CSS is
+----------------------------------------------------------------------------------------------------------------
+CSS stands for Cascading Style Sheets. Its purpose is to style markup languages (like HTML or XML). Therefore, CSS is worthless on its own, unless associated with an HTML document.
+
+CSS brings an HTML document to life, by choosing fonts, applying colors, defining margins, positioning elements, animating interactions, and much more.
+-----------------------------------------------------------------------------------------------------------------
+How CSS works
+----------------------------------------------------------------------------------------------------------------
+How CSS works is by selecting an HTML element (like a paragraph), choosing a property to alter (like the color), and applying a certain value (like red):
+
+p{ color: red;}
+The word “Style” can be deceiving. You might think CSS is only used to change the text’s color, size, and font. But CSS is able to define an HTML document’s layout, by defining heights, widths, inner and outer margins, positions, columns…
+-----------------------------------------------------------------------------------------------------------------
+Where do I write CSS?
+----------------------------------------------------------------------------------------------------------------
+CSS as an attribute
+
+You can write CSS directly on an HTML elements, by using the style attribute:
+
+<p style="color: red;">This text is important.</p>
+CSS in the <head>
+
+You can use a <style> tag in the <head> of your HTML document:
+
+<html>
+  <head>
+    <title>Hello World</title>
+    <style type="text/css">
+      p{ color: red;}
+    </style>
+  </head>
+  <body>
+    <p>This paragraph will be red.</p>
+  </body>
+</html>
+CSS in a separate file
+----------------------------------------------------------------------------------------------------------------
+You can write your CSS in a separate file with a .css extension, and then link it to your HTML by using the <link> HTML tag.
+
+p{ color: red;}
+<html>
+  <head>
+    <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <p>This paragraph will be red.</p>
+  </body>
+</html>
+It is the HTML document who “calls” the CSS file, in this case a file called style.css located in the same folder as the HTML file.
+
+This 3rd method of using a separate CSS file is preferred.
+-----------------------------------------------------------------------------------------------------------------
+Why not style directly in the HTML?
+
+Because we want to separate the content (HTML) from its presentation (CSS).
+
+If you want to visualize the purpose of this distinction, head towards the wonderful CSS Zen Garden: each design uses the exact same HTML but a different CSS each time.
+
+It makes maintenance easier as well: the same CSS file can be used for a whole website. It provides flexiblity: focus on the content on one side, the styling on the other. SEO purposes, different concerns.
+-----------------------------------------------------------------------------------------------------------------
+                                    CSS SYNTAX
+-----------------------------------------------------------------------------------------------------------------
+Who{ what: how;}
+selector { property: value;}
+CSS is a 3-part process:
+
+the selector defines who is targeted, which HTML element(s)
+the property defines what charateristic to alter
+the value defines how to alter that charateristic
+This whole block (selector/property/value) is a CSS rule.
+-----------------------------------------------------------------------------------------------------------------
+Because we don’t want to style all our HTML elements at once, we need to be able to target a subset of these HTML elements.
+
+CSS selectors define which elements we want our styling to be applied to.
+------------
+#Generic tag selectors
+
+Targeting generic HTML tags is easy: just use the tag name.
+
+a{ /* Links */ }
+p{ /* Paragraphs */ }
+ul{ /* Unordered lists */ }
+li{ /* List items */ }
+
+HTML	                                Possible CSS selectors	                   What it means
+<p></p>                                         p	                                Every <p>
+<div class="global"></div>                      div                                 Every <div>
+                                                .global                         Every elements with class="global”
+                                                div.global	                    Every <div> with class=”global”
+
+<ul id="menu">                                    #menu                         The only element with id=”menu”
+                                                ul#menu	                        The only <ul> with id=”menu”
+<ol class="dico">                               li                              Every <li>
+  <li>Un cobaye</li>                            ol li                         Every <li> with an <ol> as ancestor
+  <li>Des cobaux</li>                           .dico li	    Every <li> with a class="dico" element as ancestor
+</ol>
+
+----------------------------------------------------------------------------------------------------------------
+Pseudo-class selectors
+----------------------------------------------------------------------------------------------------------------
+HTML elements can have different states. The most common case is when you hover over a link. It’s possible in CSS to apply a different style when such an event occurs.
+
+Pseudo-class selectors are attached to usual selectors and start with a colon ::
+----------------------------------------------------------------------------------------------------------------
+Inherited properties
+----------------------------------------------------------------------------------------------------------------
+Only a few CSS properties can be inherited from ancestors. They are mainly text properties:
+
+text color
+font (family, size, style, weight)
+line-height
+----------------------------------------------------------------------------------------------------------------
+The 100 measure
+----------------------------------------------------------------------------------------------------------------
+One quick way to figure out how “powerful” a CSS rule is, is by measuring the specificty of the selectors:
+
+#id selectors are worth 100
+.class selectors are worth 10
+tag selectors are worth 1
+The selector with the highest “score” will prevail, no matter the order in which the CSS rules appear.
+----------------------------------------------------------------------------------------------------------------
+How to avoid conflicts
+----------------------------------------------------------------------------------------------------------------
+While writing your CSS, it’s easy to write conflicting rules, where the same property is applied several times.
+
+To avoid that:
+
+only use classes: use .introduction instead of #introduction, even if that element only appears once in your webpage
+avoid applying multiple classes on a single HTML element: don’t write <p class="big red important"> but rather <p class="title"> which is more semantically descriptive
+don’t use inline styles like <div style="background: blue;">
+----------------------------------------------------------------------------------------------------------------
+Sizing for content and space
+----------------------------------------------------------------------------------------------------------------
+There many CSS properties that require size units:
+
+font-size defines the size of the text
+border-width defines the weight of element borders
+margin defines the spacing between elements
+left/right/top/bottom allows to position and move elements
+The most used units are:
+
+px for pixels
+% for percentage
+em for sizing relative to the parent’s font-size value.
+
+Em
+----
+em is a relative unit: it depends upon the value of the element’s font-size.
+
+For example, if the parent has a font-size of 20px and you apply font-size: 0.8em to a child element, this child element will render a font-size of 16px.
+
+Don’t confuse the em CSS size unit and the em CSS selector, which targets <em> HTML elements
+
+The em unit is interesting as you define font sizes of HTML elements relative to one another. To design a pleasing and easy to read webpage, you need consistent visual depth. For example, you want your <h1> to be twice as big as your body text, your <h2> only 1.5 times as big, and your sidebar slightly smaller. This could easily be achieved in CSS:
+
+Rem
+----
+The rem unit is similar to em, but instead of depending upon the parent’s value, it relies upon the root element’s value, which is the <html> element.
+
+The span rely upon the p font-size value while the strong rely upon the html font-size value.
+
+#Which unit to use?
+----------------------------------------------------------------------------------------------------------------
+I’d recommend pixels to start with: as they’re absolute values, they aren’t affected by the element’s context. They are straightforward, allow to set the text size, image dimensions, border width, position coordinates…
+
+Percentage and em values can be used alongside pixels, for relative text sizes especially.
+
+----------------------------------------------------------------------------------------------------------------
+Applying a CSS reset
+----------------------------------------------------------------------------------------------------------------
+A browser’s default styles can interfere with the styles we actually want to apply. That’s why a CSS reset has been devised to provide a consistent base across all browsers.
+
+It’s particularly useful for normalizing the text size and removing all margins.
+
+You can find (and download) the HTML 5 reset.css of this website. Just include it in your <head> before your own stylesheet.
+----------------------------------------------------------------------------------------------------------------
+5.1 CSS Text
+----------------------------------------------------------------------------------------------------------------
+The Web is 90% text, so let's style it first
+Webpages mostly consist of text. Historically, stylesheets for print software (like Adobe Indesign, QuarkXPress, or even Microsoft Word) were only meant to format text. Although CSS also allows to alter the layout of a webpage, formatting text with CSS is the first thing people usually do.
+
+CSS font-family: Choosing a font
+----------------------------------------------------------------------------------------------------------------
+
+CSS provides several font properties, that directly affect text rendering. The font-family property defines which font to use.
+
+#Generic font families
+
+Fonts are grouped in 5 generic families:
+
+serif fonts have small lines attached to the end of each character
+sans-serif
+monospace
+cursive
+fantasy
+cursive and fantasy are never used.
+
+Because the font-family property is inherited by all HTML children elements, you can apply a font for the whole HTML document by applying it on the ancestor of all HTML elements: the <body> element.
+
+body{ font-family: sans-serif;}
+With this CSS rule, the webpage will use the sans-serif font defined by the user in his preferences.
+
+#Web-safe fonts
+
+The problem with using generic font names is that the design of your webpage will rely upon the font set by the user in his settings.
+
+As you probably want your webpage to look the same on anyone’s computer, you’ll want to define a specific font to be used. To do so, just use the name of the font.
+
+body{ font-family: Arial;}
+Your webpage will use Arial provided it is installed on the user’s computer. If the Arial font is not available on the user’s computer, it will use the browser’s default serif font (which is usually Times).
+
+Arial is a safe choice though, because it is installed on all Windows and Mac computers, and on most Linux systems. That is why Arial is considered a web-safe font: you can safely use it in your CSS and be almost sure that the user’s computer will have it installed.
+
+There are 9 web-safe fonts:
+
+Arial
+Arial Black
+Comic Sans MS
+Courier New
+Georgia
+Impact
+Times New Roman
+Trebuchet MS
+Verdana
+#Applying a list of fonts
+
+Although using any of these values for the font-family property is a safe bet, you can define fallback values by writing a list of font families:
+
+body{ font-family: Arial, Verdana, sans-serif;}
+By defining multiple values for font-family, the browser will look for the first value Arial and use it. If it’s not available, it will use the following one Verdana. Finally, if that one isn’t available either, it will use the browser’s default sans-serif font.
+
+It is good practice to use a generic family as the last value. If you can’t define the specific font to use, you can at least define the type of font you want.
+
+Because designers want to use more original fonts but still want their webpage to look exactly the same on anyone’s computer, it is possible to include a font in a webpage. That way, they make sure the font is available even if it’s not present on the user’s computer, simply because the website provides the font.
+
+We’ll look into this method called @font-face, and see how services like Google Fonts or Typekit can help you.
+
+----------------------------------------------------------------------------------------------------------------
+CSS font properties : For bold and italic text
+----------------------------------------------------------------------------------------------------------------
+font-size
+
+We’ve already covered CSS size units, which are used to set the font size among other things.
+
+p{ font-size: 16px;}
+Bear in mind that setting a font size of 16px won’t make each letter 16px high. The actual size of each letter depends on the font-family used.
+
+#font-style
+
+This property can make your text italic:
+
+h2{ font-style: italic;}
+Default value: font-style: normal;.
+
+Another possible value is oblique but is never used.
+
+#font-weight
+
+This property can make your text bold:
+
+h2{ font-weight: bold;}
+Default value: font-weight: normal;.
+
+Depending on the font-family used, there is a range of font weights available, from 100 to 900:
+
+font-weight: 100; /* Thin */
+font-weight: 200; /* Extra Light */
+font-weight: 300; /* Light */
+font-weight: 400; /* Which is like font-weight: normal; */
+font-weight: 500; /* Medium */
+font-weight: 600; /* Semi Bold */
+font-weight: 700; /* Which is like font-weight: bold; */
+font-weight: 800; /* Extra Bold */
+font-weight: 900; /* Ultra Bold */
+Very few fonts provide all 9 weights. The Exo font is one of them.
+
+You’ll mostly find 400 (normal) and 700 (bold), and sometimes 300 (light) and 500 (medium).
+
+#font-variant
+
+This property turn your text into small caps:
+
+h2{ font-variant: small-caps;}
+Default value: font-variant: normal;.
+
+It’s not a widely used property.
+----------------------------------------------------------------------------------------------------------------
+CSS line-height : For readibility concerns
+----------------------------------------------------------------------------------------------------------------
+The line-height property, when applied to block-level element, defines, as its name literally suggests, the height of each line. It is not to be confused with the line spacing (a.k.a “leading”) found in most graphical softwares (like Photoshop) which determines the amount of space between lines in a paragraph. Although they both carry the same purpose (spacing lines of text), they do so in different ways.
+
+The line-height property uses the following units:
+
+px
+em
+%
+unitless numbers, like 1.5
+The unitless values basically act like percentages. So 150% is equal to 1.5. The latter is just more compact and readable.
+
+#Why line-height is important
+
+The purpose of the line-height is to define a readable line spacing for your text. Because readibility is dependent upon the size of the text, it is recommended to use a dynamic value that is relative to the size of the text. Using px is therefore not recommended because it defines a static value.
+
+In some cases, using px does come in handy (when you wish to vertically align text according to another element and not according to the font size).
+
+Because using % or em values can have unexpected values, the recommended method is unitless numbers:
+
+for body text, a line height of 1.5 times the size of the text is recommended.
+for headings, a line height of 1.2 is recommended
+body{ font-size: 16px; line-height: 1.5;}
+The computed line height will thus be 16 * 1.5 = 24px.
+
+#Line-height inheritance
+
+Because the line-height property is inherited by the child elements, it will remain consistent no matter what font-size is subsequently applied.
+
+body{ font-size: 16px; line-height: 1.5;}
+blockquote{ font-size: 18px;}
+The blockquote element will have a line height of 27px.
+----------------------------------------------------------------------------------------------------------------
+CSS font shorthand : A shortcut for several font properties
+----------------------------------------------------------------------------------------------------------------
+In CSS, some properties can be grouped together under another property, to save time and space. The font property regroups (in this particular order):
+
+font-style
+font-variant
+font-weight
+font-size
+line-height
+font-family
+You can thus define 6 properties through a single one:
+
+body{ font: italic small-caps bold 16px/1.5 Arial, sans-serif;}
+They have to be written in this particular order and there must be a slash / between the font-size and the line-height.
+
+Although I’ve defined all 6 properties, only the font-size and font-family are mandatory. You can thus omit to define the other properties if you intend to keep their default values:
+
+body{ font: bold 16px/1.5 Arial, sans-serif;}
+Because font-style and font-variant have not been defined, they’ll use their default value normal.
+
+Beware! If you’ve previously define one of the font properties and use the font shorthand afterwards, it will override the previously defined values.
+
+body{ font-size: 16px; line-height: 1.5;}
+ul{ font: 14px Georgia, serif;}
+In the font shorthand, the line-height has not been defined, and will lose its ancestor’s value of 1.5 and will revert to its default value medium (which is usually 1.2).
+
+Other shorthand properties exist, like background, border and margin.
+----------------------------------------------------------------------------------------------------------------
+CSS text properties : Other text alterations
+----------------------------------------------------------------------------------------------------------------
+Alongside the several font-* properties, CSS provides many text-* properties.
+
+#text-align
+
+The text-align property must be applied on a block-level element and defines how its text and children inline elements are horizontally aligned.
+
+body{ text-align: left;}
+The most used values are:
+
+left
+right
+center
+justify
+These values correspond to the same alignment buttons you find in Microsoft Word or Photohop:
+
+
+
+The justify value is not recommended. Although it might look visually appealing because it forms a rectangle of text, it is very hard to read.
+
+The text-align default value is start. Basically, start can either be left or right, depending on the direction set on the HTML document.
+
+direction is a CSS property that can either be ltr (left to right) or rtl (right to left):
+
+if ltr is chosen, start equals to left
+if rtl is chosen, start equals to right
+#text-decoration
+
+The text-decoration property is used to add a line on your text.
+
+Default value: none
+
+.deleted{ text-decoration: line-through;}
+Deleted
+Possible values:
+
+overline
+underline
+line-through
+By default, HTML links (<a>) have a text-decoration: underline; applied to them. One of the first things coders usually do is to remove this default styling:
+
+a{ text-decoration: none;}
+#text-indent
+
+The text-indent property allows to add space before the first letter of the first line of a block-level element.
+
+Default value: 0 (zero)
+
+blockquote{ text-indent: 30px;}
+People always make the mistake of thinking art is created for them. But really, art is a private language for sophisticates to congratulate themselves on their superiority to the rest of the world. As my artist’s statement explains, my work is utterly incomprehensible and is therefore full of deep significance.
+Notice how only the first line is indented. If you want to offset the whole block of text, use paddings.
+
+As for the font-size property, you can use px, em, or even % values.
+
+#text-shadow
+
+If you’ve ever used Photoshop, you’ve probably used the drop shadow tool. In CSS, you can add shadow to a text, to make it either fancier or more readable.
+
+You define:
+
+x the horizontal offset
+y the vertical offset
+the blur
+the color
+h1{ text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
+Hello World
+Only the x and y values are required. The blur defaults to 0 (zero), while the color defaults to the color of the text.
+
+This property is tricky, so use it with parsimony and don’t go crazy!
+------------------------------------------------------------------------------------------

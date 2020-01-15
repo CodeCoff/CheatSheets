@@ -1,0 +1,65 @@
+....................................................................................................
+                        Useful Commands for Unix Shell
+....................................................................................................
+1. grep     :   Searches for patterns in each file. Looks for patterns separated by newline character
+                and prints each line that matches a patterns
+
+                e.g.grep "String"  filename
+                    grep -i "String" filename  (this is case insensitive)
+-------------------------------------------------------------------------------------------------------
+2. ls       :   list files and directories in the current active path
+3. pwd      :   prints the current working directory. Output is the full system path of the current 
+                working directory to standard Output
+               
+                e.g. pwd 
+-------------------------------------------------------------------------------------------------------
+4. cat      :   "cat" command has three related functions with regard to a text file i.e.:
+                        1. Displaying them
+                        2. Combining copies
+                        3. Creating new ones
+                The most common use of cat is to read the contents of files, and cat is the most convenient 
+                program for this purpose.
+
+                e.g. cat fileName
+-------------------------------------------------------------------------------------------------------
+5. echo     :   used to display a line of text/string that's passed as an argument. It's mostly used in shell scripts
+                and batch files to output status text to the screen or a file
+
+                e.g. echo "Some text"
+-------------------------------------------------------------------------------------------------------
+6. touch    :   used to create a file without any content
+
+                e.g. touch "new file name"
+-------------------------------------------------------------------------------------------------------
+7.  mkdir   :   create a new directory
+
+                e.g. mkdir directoryName
+-------------------------------------------------------------------------------------------------------
+8. rm       :   short for 'remove'. Deletes the file. If removing directory, also need to use -rf
+
+                e.g. rm some-file    (Deletes the some-file file)
+                     rm -rf some-dir (Deletes the some-dir directory)
+-------------------------------------------------------------------------------------------------------
+9. rmdir    :   removes the directory if it has no content
+
+                e.g. rmdir some-dir 
+-------------------------------------------------------------------------------------------------------
+10. tail    :   reads a file and outputs the last part of it(i.e. the "tail"). It is 
+                useful for going through crash reports.
+                You can also pass the last number of lines you want to output. 
+
+                e.g. tail -n 10 some-file (displays the last 10 lines from the file)   
+-------------------------------------------------------------------------------------------------------
+11. wget    :   Free software from GNU for retreiving files using HTTP,HTTPS, FTP & FTPS. 
+
+                e.g. wget www.medium.com
+-------------------------------------------------------------------------------------------------------
+12. find    :   Lets you quickly lookup a file or a directory. Helpful when working on a big project
+
+                e.g. find . -name index.js
+                     find . -name "*.js"  (Searches for a file of a particular type. 
+                     In this case, all the files ending with .js)
+-------------------------------------------------------------------------------------------------------
+13. mv      :   move file or directories from one place to another
+
+                e.g. mv somefile /to/some/other/path
